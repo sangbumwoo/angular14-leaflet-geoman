@@ -94,13 +94,10 @@ DOMAIN=[DOMAIN]
     // 'TMap Satellite Map': L.tileLayer.koreaProvider('TMap.Satellite'),
     // 'TMap Gray Map': L.tileLayer.koreaProvider('TMap.Gray'),
     // 'TMap Midnight Map': L.tileLayer.koreaProvider('TMap.Midnight'),
+    'google satellite': tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '...' }),
     'vworld hybrid': tileLayer('https://xdworld.vworld.kr/2d/Hybrid/service/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
     'vworld satellite': tileLayer('https://xdworld.vworld.kr/2d/Satellite/service/{z}/{x}/{y}.jpeg', { maxZoom: 18, attribution: '...' }),
-    'Open Street Map': tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: 'Open Street Map'
-    }),
-    'google satellite': tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '...' }),
+    'Open Street Map': tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
 
     // baroEmap: tileLayer('https://map.ngii.go.kr/openapi/Gettile.do?service=WMTS&request=GetTile&version=1.0.0&layer=korean_map&style=korean&format=image/png&tilematrixset=korean&tilematrix=L{z}&tilerow={y}&tilecol={x}&apikey=04trYP9_xwLAfALjwZ-B8g')
   };
