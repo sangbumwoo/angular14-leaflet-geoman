@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 import { latLng, tileLayer } from 'leaflet';
 import "@geoman-io/leaflet-geoman-free";
 import * as L from 'leaflet';
@@ -11,9 +11,44 @@ import * as L from 'leaflet';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+//   template: `
+//     <ng-container *ngTemplateOutlet="greet"></ng-container>
+//     <hr>
+//     <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+//     <hr>
+//     <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+//     <hr>
+
+//     <ng-template #greet><span>Hello</span></ng-template>
+//     <ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
+//     <ng-template #svk let-person="localSk"><span>Ahoj {{person}}!</span></ng-template>
+// `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  messagePromise: Promise<string> | undefined;
+  ngOnInit(): void {
+    this.messagePromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("MadanMohan");
+      }, 3000)
+    })
+  }
+  GetCustomer() {
+    this.messagePromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Madan Mohan Ready")
+      }, 2000)
+    })
+  }
+
+  @Input('ordersTemplate') ordersTemplateRef: TemplateRef<any> | undefined;
+  @ContentChild('contentCustomer') contentCustomer: TemplateRef<any> | undefined;
+
+  myContext = { $implicit: 'World', localSk: 'Svet' };
+
+
+
   map: any;
   vworldApiKey = "86128BEF-240C-353F-8263-51F44030A03A"
   /* 

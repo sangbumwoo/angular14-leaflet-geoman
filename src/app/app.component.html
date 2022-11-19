@@ -1,12 +1,72 @@
-<div style="height: 100%;"
+<!-- <div style="height: 100%;"
      leaflet
      [leafletBaseLayers]="baseLayers"
      (leafletMapReady)="onMapReady($event)"
      [leafletOptions]="options">
-</div>
+</div> -->
 <!-- 
 <div class="map"
      (leafletMapReady)="onMapReady($event)"
      leaflet
      [leafletOptions]="options">
 </div> -->
+<div class="container" style="margin-top: 30px">
+
+     <div style="border: 1px indigo solid; padding: 15px; margin: 10px;;">
+          <div class="form-group">
+               <label>Basic ngTemplateOutlet</label>
+          </div>
+          <ng-container *ngTemplateOutlet="basicTemplate"></ng-container>
+          <ng-template #basicTemplate>
+               <b>Sample Template</b>
+          </ng-template>
+     </div>
+
+     <div style="border: 1px indigo solid; padding: 15px; margin: 10px;;">
+          <div class="form-group">
+               <label>ngTemplateOutlet with default value by <b>$implicit</b></label>
+          </div>
+          <ng-container *ngTemplateOutlet="template; 
+          context: {$implicit: 'MandanMohan'}"></ng-container>
+          <ng-template let-name #template>
+               {{name}}
+          </ng-template>
+     </div>
+
+     <div style="border: 1px indigo solid; padding: 15px; margin: 10px;;">
+          <div class="form-group">
+               <label>$implicit with <b>another</b> value.</label>
+          </div>
+          <ng-container [ngTemplateOutlet]="templatetwo"
+               [ngTemplateOutletContext]="{$implicit: 'MandanMohan', firstMessage: 'Message from MadanMohan'}">
+          </ng-container>
+          <ng-template let-nameOne let-messageOne="firstMessage" #templatetwo>
+               {{nameOne}} -- {{messageOne}}
+          </ng-template>
+     </div>
+
+     <div style="border: 1px indigo solid; padding: 15px; margin: 10px;;">
+          <div class="form-group">
+               <label>$implicit <b>(async))</b> value.</label>
+          </div>
+          <ng-container [ngTemplateOutlet]="templatetwo"
+               [ngTemplateOutletContext]="{$implicit: messagePromise | async}">
+          </ng-container>
+          <ng-template let-mymessageTwo #templatetwo>
+               {{mymessageTwo}}
+          </ng-template>
+          <input type="button" value="click" (click)="GetCustomer()">
+     </div>
+
+     <div style="border: 1px indigo solid; padding: 15px; margin: 10px;;">
+          <div class="form-group">
+               <label>without $implicit and with object</label>
+          </div>
+          <ng-container [ngTemplateOutlet]="templatethree"
+               [ngTemplateOutletContext]="{customer: {name: 'Madan', location:'bangolore'}}">
+          </ng-container>
+          <ng-template let-mymessageThree="customer" #templatethree>
+               {{mymessageThree.name}}
+          </ng-template>
+     </div>
+</div>
